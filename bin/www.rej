@@ -1,0 +1,9 @@
+diff a/bin/www b/bin/www	(rejected hunks)
+@@ -12,7 +12,6 @@
+  * Get port from environment and store in Express.
+  */
+ 
+-var port = normalizePort(process.env.PORT || '8011');
+ var port = normalizePort(process.env.PORT || '8014');
+ app.set('port', port);
+ 

@@ -1,0 +1,225 @@
+<ol class="breadcrumb border-bottom">
+  <li class="module_name flex-grow-1">LAUDEA: Alumni Engagement Portal</li>
+  
+  <li class="breadcrumb-item"><a  data-ui-sref="home">Home</a></li>
+  <li class="breadcrumb-item active" data-ui-sref="groupMemberList">Group Membership List</li>
+</ol>
+<section class="content">
+  <div class="element-wrapper">
+    <h1 class="element-title">Group Membership from {{groupNameList}}</h1>
+    <div class="element-actions">
+        <a class="btn btn-sm btn-primary" data-ui-sref="addMember(({ state: 'Add' }))" data-ui-sref-active="active"><i class="fas fa-plus"></i>Add Member</a>
+        <a class="btn btn-sm btn-primary" data-ui-sref="addMembersExcelSheet" data-ui-sref-active="active"><i class="fas fa-plus"></i>Add Members from EXcel Sheet</a>
+    </div>
+  </div>
+  <div class="card mb-0 pb-0">
+  <div class="standard-table-header">
+       
+        <div class="standard-table-filter border-bottom-0">
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group w-50 my-0 uiSelectContainer">
+               <!-- <select class="form-control form-control-sm" title="{{groupNameList}}" ng-click="groupNameSelect();" ng-model="groupNameList" ng-options="val for (key , val) in alumniGroupName">
+                  <option value="" disabled>Select Alumni Group Name</option>
+                </select> -->
+
+                <ui-select ng-model="groupNameList" title="Select" on-select="groupNameSelect($item)">
+                  <ui-select-match placeholder="Select">{{ $select.selected }}</ui-select-match>
+                  <ui-select-choices repeat="item in (alumniGroupName | filter: $select.search)">
+                    <div ng-bind="item"></div>
+                  </ui-select-choices>
+                </ui-select>
+
+              </div>
+            </div>
+            <div class="col-md-3 mt-2 mt-md-0 text-right">
+              <div class="input-group input-group-sm">
+                <input type="text" class="form-control" placeholder="Search" ng-model="searchGroupList"  id="search" aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-gray-grad" type="button">
+                    <i class="fas fa-search mr-0"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+    <div class="card-body-padded">
+      <div class="table-container">
+        <table  class="table table-padded">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Mobile Number</th>
+              <th>Email ID</th>
+              <th >Address</th>
+              <th>Group Membership</th>
+              <th width="10%">Status</th>
+              <th width="100px">Action</th>
+            </tr>
+          </thead>
+          <tbody> 
+            <tr ng-repeat="list in alumniDetails | startFrom:currentPage*pageSize | limitTo:pageSize | filter : groupNameList | filter : searchGroupList">
+              <td>{{list.studentName}}</td>
+              <td>{{list.studentContactNo}}</td>
+              <td>{{list.studentEmail}}</td>
+              <td>{{list.addressStreet}}</td>
+              <td>{{list.groupName}}</td>
+              <td class="nowrap"><span class="status-pill smaller green"></span><span>Active</span></td>
+              <td data-title="Action" class="action-btn px-0">
+                  <div class="input-group">
+                      <a class="btn btn-primary-2 rounded-0 py-0" data-ui-sref="addMember({state:'Edit', alumni:list._id,})">
+                        <i class="fas fa-edit mr-1"></i> Edit
+                      </a>
+                      <a class="btn btn-danger rounded-0 py-0" ng-click="deleteMemberConfirm(list._id, list.groupName);">
+                        <i class="fas fa-trash-alt mr-1"></i> Delete
+                      </a>
+                  </div>
+                  <div></div>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="standard-table-footer">
+      <div class="row">
+        <div class="col-sm-4">
+          <select class="per-page" ng-model="pageSize" ng-init="pageSize='10'" id="pageSize">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+          </select>
+          <span>per page</span> </div>
+        <div class="col-sm-8 text-right"> 
+          <span class="d-none">1-2 of 2</span> 
+          <button class="arrow-btn" ng-disabled="currentPage == 0" ng-click="currentPage=0"> <i class="fas fa-angle-double-left"></i> </button><button class="arrow-btn" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"> <i class="fas fa-angle-left"></i> </button>  
+          <span class="span-box"> {{currentPage+1}}</span> <span class="span-count">of {{numberOfPages()}}</span> 
+          <button class="arrow-btn" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1"> <i class="fas fa-angle-right"></i> </button><button class="arrow-btn" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="lastpage();"> <i class="fas fa-angle-double-right"></i> </button>   
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="sidebar-drawer-overlay collapse" id="drawerFilter">
+  <div class="sidebar-drawer">
+    <div class="sidebar-drawer-header d-flex">
+      <div class="flex-grow-1 text-white">Filters</div>
+      <a class="nav-link py-0" data-toggle="collapse" data-target="#drawerFilter"><i class="fas fa-times drawer-close"></i></a> </div>
+    <div class="sidebar-drawer-body">
+      <div class="w-100" id="sidebarBody"> 
+        
+        <!-- Stakeholder -->
+        
+        <div class="card">
+          <div class="card-header d-flex"> <span class="flex-grow-1">Graduation Year</span> <a class="link mr-4">Clear</a> <a class="sidebar-dropdown-icon mr-2" data-toggle="collapse" data-target="#sidebarCategory1"><i class="fa fa-angle-up"></i></a> </div>
+          <div class="card-body collapse show" id="sidebarCategory1">
+            <label class="option d-block">
+              <input name="service" value="marketing" type="checkbox">
+              <span class="checkbox"></span> 2017 </label>
+            <label class="option d-block mt-2">
+              <input name="service" value="videos" type="checkbox">
+              <span class="checkbox"></span> 2016 </label>
+          </div>
+        </div>
+        
+        <!-- Degree -->
+        
+        <div class="card">
+          <div class="card-header d-flex"> <span class="flex-grow-1">Degree </span> <a class="link mr-4">Clear</a> <a class="sidebar-dropdown-icon mr-2" data-toggle="collapse" data-target="#sidebarCategory2"><i class="fa fa-angle-up"></i></a> </div>
+          <div class="card-body collapse show" id="sidebarCategory2">
+            <label class="option d-block">
+              <input name="category"type="checkbox">
+              <span class="checkbox"></span> Degree 1 </label>
+            <label class="option d-block mt-2">
+              <input name="category" type="checkbox">
+              <span class="checkbox"></span> Degree 2 </label>
+          </div>
+        </div>
+        
+        <!-- Department -->
+        
+        <div class="card">
+          <div class="card-header d-flex"> <span class="flex-grow-1">Department </span> <a class="link mr-4">Clear</a> <a class="sidebar-dropdown-icon mr-2" data-toggle="collapse" data-target="#sidebarCategory3"><i class="fa fa-angle-up"></i></a> </div>
+          <div class="card-body collapse show" id="sidebarCategory3">
+            <label class="option d-block">
+              <input name="category"type="checkbox">
+              <span class="checkbox"></span> Department 1 </label>
+            <label class="option d-block mt-2">
+              <input name="category" type="checkbox">
+              <span class="checkbox"></span> Department 2 </label>
+          </div>
+        </div>
+        
+        <!-- Location -->
+        
+        <div class="card">
+          <div class="card-header d-flex"> <span class="flex-grow-1">Location </span> <a class="link mr-4">Clear</a> <a class="sidebar-dropdown-icon mr-2" data-toggle="collapse" data-target="#sidebarCategory3"><i class="fa fa-angle-up"></i></a> </div>
+          <div class="card-body collapse show" id="sidebarCategory3">
+            <label class="option d-block">
+              <input name="category"type="checkbox">
+              <span class="checkbox"></span> Location 1 </label>
+            <label class="option d-block mt-2">
+              <input name="category" type="checkbox">
+              <span class="checkbox"></span> Location 2 </label>
+          </div>
+        </div>
+        
+        <!-- Location -->
+        
+        <div class="card">
+          <div class="card-header d-flex"> <span class="flex-grow-1">Employer </span> <a class="link mr-4">Clear</a> <a class="sidebar-dropdown-icon mr-2" data-toggle="collapse" data-target="#sidebarCategory3"><i class="fa fa-angle-up"></i></a> </div>
+          <div class="card-body collapse show" id="sidebarCategory3">
+            <label class="option d-block">
+              <input name="category"type="checkbox">
+              <span class="checkbox"></span> Employer 1 </label>
+            <label class="option d-block mt-2">
+              <input name="category" type="checkbox">
+              <span class="checkbox"></span> Employer 2 </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm Model-->
+<div id="deleteMemberConfirm" class="modal fade">
+	<div class="modal-dialog modal-sm modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">			
+				<h4 class="modal-title text-center">
+          	<i class="far fa-times-circle"></i> <br> Are you sure?</h4>	
+			</div>
+			<div class="modal-body py-2 px-4">
+				<p>Do you really want to delete these records?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-danger" ng-model="groupMemberId" ng-click="deleteGroupMember(groupMemberId, groupNames);">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Delete Success -->
+<div id="memberDeleteSuccessModal" class="modal fade"  aria-hidden="true">
+    <div class="modal-dialog model-sm modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="sa-icon sa-success animate" style="display: block;"> <span class="sa-line sa-tip animateSuccessTip"></span> <span class="sa-line sa-long animateSuccessLong"></span>
+            <div class="sa-placeholder"></div>
+            <div class="sa-fix"></div>
+          </div>
+          <div class="section-title mt-5 mb-5">
+            <h2 class="text-gradient-02">Successfully Deleted!</h2>
+          </div>
+          <button type="button" class="btn btn-secondary mb-3" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>

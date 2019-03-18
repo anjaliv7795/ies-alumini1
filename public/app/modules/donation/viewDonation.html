@@ -1,0 +1,26 @@
+<section class="content">
+    <div class="element-wrapper">
+        <h1 class="element-title">Donation</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="media">
+                        <img class="mr-3" height="250px" width="500px"
+                            src="{{donationarr.fileAttachmentDetails.imageUrl}}" alt="Generic placeholder image">
+                        <div class="media-body">
+                            <div class="card-body">
+                                <h4 class="mt-0 pl-2 titles">{{donationarr.fundName| uppercase}}</h4>
+                                <h6 class="mt-2">{{donationarr.description}}</h6>
+                                <!-- <input type="checkbox" name="terms" value="terms"> I declare that ______ is the true donor -->
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success mr-1 mb-2 float-right" data-ui-sref-active="active"
+                        data-target="#" data-toggle="modal">Make a Contribution</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

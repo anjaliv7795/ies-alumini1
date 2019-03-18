@@ -1,0 +1,38 @@
+{
+  "name": "webfinity-2.0",
+  "authors": [
+    "Anand Sonachalam <anand.sonachalam@psgsoftwaretechnologies.com>"
+  ],
+  "description": "AngularJS Framework for Education Solutions",
+  "main": "",
+  "license": "MIT",
+  "homepage": "www.psgsoftwaretechnologies.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "4.1.1",
+    "jquery": "3.3.1",
+    "angular": "1.6.1",
+    "angular-ui-router": "0.3.1",
+    "flatpickr": "3.0.7",
+    "angular-flatpickr": "3.4.0",
+    "angular-ui-select": "^0.19.8",
+    "angular-sanitize": "1.6.1",
+    "moment": "momentjs#2.18.1",
+    "fullcalendar": "v3.5.1",
+    "angular-fullcalendar": "^1.0.0",
+    "angular-ui-tinymce": "^0.0.19",
+    "ZingChart-AngularJS": "zingchart-angularjs#^1.2.0",
+    "angular-progress-arc": "^1.0.0",
+    "oclazyload": "1.0.9",
+    "ngstorage": "0.3.11",
+    "ui-bootstrap": "^2.5.6",
+    "grunt": "^1.0.3"
+  }
+}

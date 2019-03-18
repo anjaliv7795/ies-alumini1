@@ -1,0 +1,106 @@
+<ol class="breadcrumb border-bottom">
+  <li class="module_name flex-grow-1">LAUDEA: Alumni Engagement Portal</li>
+  <li class="breadcrumb-item"><a  data-ui-sref="home">Home</a></li>
+  <li class="breadcrumb-item"><a  data-ui-sref="groupMembershipList">Group Membership List</a></li>
+  <li class="breadcrumb-item active">Add Member</li>
+</ol>
+<section class="content">
+  <div class="element-wrapper">
+    <h1 class="element-title">Add Alumni Directory</h1>
+    <div class="element-actions">
+      <a class="link" href="assets/template/Alumni-Member-Template.xlsx"><i class="far fa-file-excel"></i>Excel Sheet Template</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="col-12 px-0">
+        <form>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group w-100">
+                  <label>Alumni Group Name</label>
+                  <div class="column">
+                    <div class="form-group form-req">
+                      <select class="form-control form-controls form-control-sm required" title="{{groupName}}"  ng-model="groupName" ng-options="val for (key , val) in alumniGroupName">
+                        <option value="" disabled>Select Group Name</option>
+                      </select>
+                      <p class="group-error-msg">Please Select the Group Name</p>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group w-100">
+                <label>Choose File</label>
+                <div class="column">
+                  <div class="form-group" id="studentRollNumber">
+                    <input type="file" file-model="myFile" class="form-control-file form-controls  required">
+                    <p class="my-1"> <small>Notes: upload Only (.xlsx) file format</small></p>
+                    <p class="group-error-msg">Please Choose a File</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>   
+    
+        </form>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="col-md-12 text-right">    
+        <button type="button" data-ui-sref="groupMembershipList" class="btn btn-secondary mr-2">Cancel</button>
+        <button type="button" ng-click="addAlumniMembers($event);" class="btn btn-primary">Save</button>
+       </div>
+    </div>
+
+  </div>
+
+
+
+<!-- Member Add Success -->
+<div id="confirmAlertModel" class="modal fade">
+    <div class="modal-dialog model-sm modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="sa-icon sa-success animate" style="display: block;"> <span class="sa-line sa-tip animateSuccessTip"></span> <span class="sa-line sa-long animateSuccessLong"></span>
+            <div class="sa-placeholder"></div>
+            <div class="sa-fix"></div>
+          </div>
+          <div class="section-title mt-5 mb-5">
+            <h2 class="text-gradient-02">{{alertMessage}}</h2>
+          </div>
+          <button type="button" class="btn btn-secondary mb-3" ng-click="alertConfirmOk();" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Error Alert Model  -->
+<div id="errorAlertModel" class="modal fade">
+  <div class="modal-dialog model-sm modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="sa-icon sa-success animate" style="display: block;"> <span class="sa-line sa-tip animateSuccessTip"></span> <span class="sa-line sa-long animateSuccessLong"></span>
+          <div class="sa-placeholder"></div>
+          <div class="sa-fix"></div>
+        </div>
+        <div class="section-title mt-5 mb-5">
+          <h2 class="text-gradient-02"><div class="model-text-red">File format not support!</div> </h2>
+           <p class="mb-0">Please upload only (.xlsx) file</p>
+        </div>
+        <button type="button" class="btn btn-secondary mb-3" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</section>
+
+
+
+
+

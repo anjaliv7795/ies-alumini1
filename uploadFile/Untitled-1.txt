@@ -1,0 +1,11 @@
+db.getCollection('alumniStudentDetails').find(
+{ 
+yearOfGraduation: 
+    { $in: [ '2015', '2014' ] },
+degreeName: 
+    { $in: [ 'BSc' ] },
+degreeName: 
+    { $in: [ 'Electronics' ] }
+    
+}
+)

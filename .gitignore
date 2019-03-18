@@ -1,0 +1,5 @@
+﻿.idea/
+node_modules/
+/public/bower_components/
+log/
+/public/dist/

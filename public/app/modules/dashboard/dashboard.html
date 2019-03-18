@@ -1,0 +1,213 @@
+<ol class="breadcrumb border-bottom">
+  <li class="module_name flex-grow-1">LAUDEA: Alumni Engagement Portal</li>
+  
+  <li class="breadcrumb-item active" data-ui-sref="home">Home</li>
+</ol>
+<section class="content">
+  <div class="element-wrapper">
+    <h1 class="element-title">Alumni Directory</h1>
+    <div class="element-actions">
+        <button class="btn btn-sm btn-primary" data-toggle="collapse" data-target="#drawerFilter"><i class="fas fa-plus"></i>Filters</button>
+    </div>
+  </div>
+  <div class="card mb-0 pb-0">
+      <div class="standard-table-header">
+             <div class="standard-table-filter filter-title border-bottom">
+              <div class="row">
+                  <div class="col-md-12">
+                       <div class="filter-action input-group input-group-sm"> <span class="align-self-center ml-1 mr-2"><b>Active Filters</b></span>
+                        
+                        <span class="tag-container" ng-if="yearSelectedShow">Graduation Year: 
+                          <span class="tag" ng-repeat="yearList in selectYear">{{yearList}} <a href="javascript:void(0)" ng-click="singleClearFilter('clearYear', yearList, $event)"><i class="fas fa-times"></i></a></span>
+                        </span> 
+
+                        <span class="tag-container" ng-if="degreeSelectedShow">Degree: 
+                          <span class="tag" ng-repeat="degreeList in selectDegree">{{degreeList}} <a href="javascript:void(0)" ng-click="singleClearFilter('clearDegree', degreeList, $event)"><i class="fas fa-times"></i></a></span>
+                        </span>
+
+                        <span class="tag-container" ng-if="branchSelectedShow">Branch: 
+                          <span class="tag" ng-repeat="branchList in selectBranch">{{branchList}} <a href="javascript:void(0)" ng-click="singleClearFilter('clearBranch', branchList, $event)"><i class="fas fa-times"></i></a></span>
+                        </span>
+
+                        <span class="tag-container" ng-if="locationSelectedShow">City: 
+                          <span class="tag" ng-repeat="locationList in selectLocation">{{locationList}} <a href="javascript:void(0)" ng-click="singleClearFilter('clearLocation', locationList, $event)"><i class="fas fa-times"></i></a></span>
+                        </span>
+
+                       </div>
+                  </div>
+              </div>
+            </div>
+            <div class="standard-table-filter border-bottom-0">
+              <div class="row">
+                 <div class="col-md-9">
+                 
+                </div>
+                <div class="col-md-3 mt-2 mt-md-0 text-right">
+                    <div class="input-group input-group-sm">
+                      <input type="text" class="form-control" placeholder="Search" ng-model="searchGroupList"  id="search" aria-label="Search" aria-describedby="basic-addon2">
+                      <div class="input-group-append">
+                        <button class="btn btn-gray-grad" type="button">
+                          <i class="fas fa-search mr-0"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        
+        <div class="card-body-padded">
+          <div class="table-container">
+            <table class="table table-padded">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Roll No</th>
+                  <th >City</th>
+                  <th>Degree</th>
+                  <th>Branch</th>
+                  <th>Year of Graduation</th>
+                  <th>Email ID</th>
+                  <th>Mobile Number</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="list in studentDetails  | startFrom:currentPage*pageSize | limitTo:pageSize | filter : searchGroupList">
+                  <td>{{list.studentName}}</td>
+                  <td>{{list.rollNumber}}</td>
+                  <td>{{list.contact.city}}</td>
+                  <td>{{list.degreeName}}</td>
+                  <td>{{list.branchName}}</td>
+                  <td class="nowrap">{{list.yearOfGraduation}}</td>
+                  <td class="nowrap">{{list.studentEmail}}</td>
+                  <td class="nowrap">{{list.studentContactNo}}</td>
+                  <td class="nowrap"><span class="status-pill smaller green"></span><span>Active</span></td>
+                  <td data-title="Action" class="action-btn px-0">
+                      <div class="input-group">
+                          <a class="btn btn-primary-2 rounded-0 py-0" data-ui-sref="editAlumni({alumniID:list._id})">
+                            <i class="fas fa-edit mr-1"></i> Edit
+                          </a>
+                          <!-- <a class="btn btn-danger rounded-0 py-0" ng-click="deleteGroupMember(list._id);">
+                            <i class="fas fa-trash-alt mr-1"></i> Delete
+                          </a> -->
+                        </div>
+                      <div></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="standard-table-footer">
+          <div class="row">
+            <div class="col-sm-4">
+              <select class="per-page" ng-model="pageSize" ng-init="pageSize='10'" id="pageSize">
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+              </select>
+              <span>per page</span> </div>
+            <div class="col-sm-8 text-right"> 
+              <span class="d-none">1-2 of 2</span> 
+              <button class="arrow-btn" ng-disabled="currentPage == 0" ng-click="currentPage=0"> <i class="fas fa-angle-double-left"></i> </button><button class="arrow-btn" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"> <i class="fas fa-angle-left"></i> </button>  
+              <span class="span-box"> {{currentPage+1}}</span> <span class="span-count">of {{numberOfPages()}}</span> 
+              <button class="arrow-btn" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1"> <i class="fas fa-angle-right"></i> </button><button class="arrow-btn" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="lastpage();"> <i class="fas fa-angle-double-right"></i> </button>   
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+<div class="sidebar-drawer-overlay collapse" id="drawerFilter">
+  <div class="sidebar-drawer">
+    <div class="sidebar-drawer-header d-flex">
+      <div class="flex-grow-1 text-white">Filters</div>
+      <a class="nav-link py-0" data-toggle="collapse" data-target="#drawerFilter"><i class="fas fa-times drawer-close"></i></a> </div>
+    <div class="sidebar-drawer-body">
+      <div class="w-100" id="sidebarBody"> 
+        
+        <!-- Stakeholder -->
+        
+        <div class="card">
+          <div class="card-header d-flex"> <span class="flex-grow-1">Graduation Year</span> <a class="link mr-4" ng-click="clearAllFilter('clearYear');">Clear</a> <a class="sidebar-dropdown-icon mr-2" data-toggle="collapse" data-target="#sidebarCategory1"><i class="fa fa-angle-up"></i></a> </div>
+          <div class="card-body collapse show" id="sidebarCategory1">
+            <label class="option d-block"  ng-repeat="year in graduationYear | orderBy">
+              <input  ng-checked="yearActive[year]" ng-model='yearActive[year]' ng-change="filterSelect(year, yearActive[year], 'dataYear')" type="checkbox">
+              <span class="checkbox"></span> {{year}} </label>
+          </div>
+        </div>
+        
+        <!-- Degree -->
+        
+        <div class="card">
+          <div class="card-header d-flex"> <span class="flex-grow-1">Degree </span> <a class="link mr-4" ng-click="clearAllFilter('clearDegree');">Clear</a> <a class="sidebar-dropdown-icon mr-2" data-toggle="collapse" data-target="#sidebarCategory2"><i class="fa fa-angle-up"></i></a> </div>
+          <div class="card-body collapse show" id="sidebarCategory2">
+            <label class="option d-block"  ng-repeat="degree in degrees | orderBy">
+                <input  ng-checked="degreeActive[degree]" ng-model='degreeActive[degree]' ng-change="filterSelect(degree, degreeActive[degree], 'dataDegree')" type="checkbox">
+                <span class="checkbox"></span> {{degree}} </label>
+          </div>
+        </div>
+        
+        <!-- Department -->
+        
+        <div class="card">
+          <div class="card-header d-flex"> <span class="flex-grow-1">Department </span> <a class="link mr-4" ng-click="clearAllFilter('clearBranch');">Clear</a> <a class="sidebar-dropdown-icon mr-2" data-toggle="collapse" data-target="#sidebarCategory3"><i class="fa fa-angle-up"></i></a> </div>
+          <div class="card-body collapse show" id="sidebarCategory3">
+            <label class="option d-block" ng-repeat="branch in departments | orderBy">
+              <input ng-checked="branchActive[branch]" ng-model='branchActive[branch]' ng-change="filterSelect(branch, branchActive[branch], 'dataBranch')"  type="checkbox">
+              <span class="checkbox"></span> {{branch}} </label>
+            
+          </div>
+        </div>
+        
+        <!-- Location -->
+        
+        <div class="card">
+          <div class="card-header d-flex"> <span class="flex-grow-1">Location </span> <a class="link mr-4" ng-click="clearAllFilter('clearLocation');">Clear</a> <a class="sidebar-dropdown-icon mr-2" data-toggle="collapse" data-target="#sidebarCategory3"><i class="fa fa-angle-up"></i></a> </div>
+          <div class="card-body collapse show" id="sidebarCategory3">
+            <label class="option d-block" ng-repeat="location in locations | orderBy">
+              <input ng-checked="locationActive[location]" ng-model='locationActive[location]' ng-change="filterSelect(location, locationActive[location], 'dataLocation')"  type="checkbox">
+              <span class="checkbox"></span> {{location}} </label>
+
+          </div>
+        </div>
+        
+        <!-- Location -->
+        
+       <!-- <div class="card">
+          <div class="card-header d-flex"> <span class="flex-grow-1">Employer </span> <a class="link mr-4">Clear</a> <a class="sidebar-dropdown-icon mr-2" data-toggle="collapse" data-target="#sidebarCategory3"><i class="fa fa-angle-up"></i></a> </div>
+          <div class="card-body collapse show" id="sidebarCategory3">
+            <label class="option d-block">
+              <input name="category"type="checkbox">
+              <span class="checkbox"></span> Employer 1 </label>
+            <label class="option d-block mt-2">
+              <input name="category" type="checkbox">
+              <span class="checkbox"></span> Employer 2 </label>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<input ng-model="q" id="search" class="form-control" placeholder="Filter text">
+  <select ng-model="pageSize" id="pageSize" class="form-control">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+     </select>
+  <ul>
+    <li ng-repeat="item in data | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
+      {{item}}
+    </li>
+  </ul>
+  <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+    </button> {{currentPage+1}}/{{numberOfPages()}}
+  <button ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+    </button> -->

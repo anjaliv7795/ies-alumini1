@@ -1,0 +1,25 @@
+<ol class="breadcrumb border-bottom">
+    <li class="module_name flex-grow-1">LAUDEA: Alumni Management Portal </li>
+    <li class="breadcrumb-item"><a data-ui-sref="home">Home</a></li>
+    <li class="breadcrumb-item active" data-ui-sref="Event">BySearch</li>
+</ol>
+<section class="content">
+    <div class="element-wrapper">
+        <h1 class="element-title">BySearch</h1>
+    </div>
+</section>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card-deck">
+            <div class="card" ng-repeat="student in studentarr | filter:search">
+                <div class="card-body">
+                        <h6 class="card-title">Name:{{student.studentName}}</h6>
+                        <h6 class="card-text d-block">RollNumber:{{student.rollNumber}}</h6>
+                        <h6 class="card-text d-block">Sem:{{student.currentSem}}</h6>
+                        <h6 class="card-text d-block">Branch:{{student.branchName}}</h6>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

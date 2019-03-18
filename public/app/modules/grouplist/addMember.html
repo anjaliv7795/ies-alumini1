@@ -1,0 +1,149 @@
+<ol class="breadcrumb border-bottom">
+  <li class="module_name flex-grow-1">LAUDEA: Alumni Engagement Portal</li>
+  <li class="breadcrumb-item"><a  data-ui-sref="home">Home</a></li>
+  <li class="breadcrumb-item"><a  data-ui-sref="groupMembershipList">Group Membership List</a></li>
+  <li class="breadcrumb-item active">Add Member</li>
+</ol>
+<section class="content">
+  <div class="element-wrapper">
+    <h1 class="element-title">{{stateName}} Alumni Directory</h1>
+    
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="col-12 px-0">
+        <form>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group w-100">
+                  <label>Alumni Group Name</label>
+                  <div class="column">
+                    <div class="form-group form-req">
+                      <select class="form-control form-control-sm required" title="{{groupName}}"  ng-model="group.groupName" ng-options="val for (key , val) in alumniGroupName">
+                        <option value="" disabled>Select Group Name</option>
+                      </select>
+                      <p class="group-error-msg">Please Select the Group Name</p>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group w-100">
+                <label>Student Roll Number</label>
+                <div class="column">
+                  <div class="form-group" id="studentRollNumber">
+                    <input class="form-control form-control-sm" ng-model="group.rollNumber" ng-change="getStudentDetails($event)" placeholder="Student Roll Number" type="text">
+                    <p class="group-error-msg">Please enter the Roll Number</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group w-100">
+                <label>Student Name</label>
+                <div class="column">
+                  <div class="form-group form-req" id="studentName">
+                    <input class="form-control form-control-sm required" ng-model="group.studentName"  placeholder="Student Name" type="text">
+                    <p class="group-error-msg">Please enter the Student Name</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+              <div class="form-group w-100">
+                <label>Student Email</label>
+                <div class="column">
+                  <div class="form-group form-req" id="email">
+                    <input class="form-control form-control-sm required" ng-model="group.studentEmail" placeholder="Student Email" type="text">
+                    <p class="group-error-msg">Please enter the Email</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+               <div class="form-group w-100">
+                  <label>Phone Number</label>
+                  <div class="column">
+                    <div class="form-group" id="phoneNumber">
+                      <input class="form-control form-control-sm" ng-model="group.studentContactNo"  placeholder="Phone Number" type="text">
+                      <p class="group-error-msg">Please enter the Phone Number</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group w-100">
+                <label>Year of Graduation</label>
+                <div class="column">
+                  <div class="form-group">
+                    <input class="form-control form-control-sm" ng-model="group.graduation"  placeholder="Eg. 2018"  type="number"  maxlength="4">
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+              <div class="form-group  w-100">
+                <label>Address</label>
+                <div class="column">
+                  <div class="form-group">
+                    <textarea class="form-control" ng-model="group.addressStreet" placeholder="Address"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group w-100">
+                <label>Message</label>
+                <div class="column">
+                  <div class="form-group">
+                      <textarea class="form-control" ng-model="group.notes" placeholder="Message"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="col-md-12 text-right">    
+        <button type="button" data-ui-sref="groupMembershipList" class="btn btn-secondary mr-2">Cancel</button>
+        <button type="button" ng-click="addAlumniGroup($event);" class="btn btn-primary">Save</button>
+       </div>
+    </div>
+
+  </div>
+
+
+
+<!-- Member Add Success -->
+<div id="confirmAlertModel" class="modal fade">
+    <div class="modal-dialog model-sm modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="sa-icon sa-success animate" style="display: block;"> <span class="sa-line sa-tip animateSuccessTip"></span> <span class="sa-line sa-long animateSuccessLong"></span>
+            <div class="sa-placeholder"></div>
+            <div class="sa-fix"></div>
+          </div>
+          <div class="section-title mt-5 mb-5">
+            <h2 class="text-gradient-02">{{alertMessage}}</h2>
+          </div>
+          <button type="button" class="btn btn-secondary mb-3" ng-click="alertConfirmOk();" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+
+
+
+

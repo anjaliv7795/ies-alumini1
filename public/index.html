@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--[if IE 9]>         
+    <html class="ie9 no-focus" data-ng-app="app" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-focus" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Alumni</title>
+
+
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="assets/img/favicons/favicon.png">
+
+    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-192x192.png" sizes="192x192">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon-180x180.png">
+    <!-- END Icons -->
+
+
+    <!-- Font Awesome Icons -->
+    <link href="assets/fonts/css/line-awesome.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap and Main CSS -->
+    <link rel="stylesheet" id="css-bootstrap" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+   
+    
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" id="flatpickr" href="bower_components/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Angular UI Selectbox -->
+    <link rel="stylesheet" id="uiselect" href="bower_components/angular-ui-select/dist/select.min.css">
+
+    <!-- Animation CSS -->
+    <link rel="stylesheet" id="animation" href="assets/css/animate.css">
+
+    <!--map-->
+    <!-- <link  rel="stylesheet" id="map" href="assets/css/style.css"> -->
+   
+    <!-- Custom CSS -->
+    <link rel="stylesheet" id="layout" href="assets/css/layout.css">
+    <link rel="stylesheet" id="components" href="assets/css/components.css">
+	<link rel="stylesheet" id="colors" href="assets/css/colors.css">
+    <link rel="stylesheet" id="responsive" href="assets/css/responsive.css">
+    <link rel="stylesheet" id="layout" href="assets/css/animate.css">
+    <link rel="stylesheet" id="layout" href="assets/css/flatpickr-theme.css">
+    <link rel="stylesheet" id="layout" href="assets/css/plugin-overrides.css">
+    <link rel="stylesheet" id="responsive" href="assets/css/style.css">
+    <!-- END Stylesheets -->
+</head>
+
+<body data-ng-controller="AppCtrl">
+    <script type="text/javascript" src="vendor/keycloak.js"></script>
+
+    <!-- Page Container -->
+    <!-- You can update template settings or enable local storage feature in js/app.js -> 'AppCtrl' controller () -->
+    <div class="container-fluid" id="page-container">
+
+        <!-- Header -->
+        <header data-ng-include="'app/modules/header/base_header.html'" data-ng-controller="HeaderCtrl" id="header-navbar" class="navbar navbar-expand-lg megamenu fixed-top mainmenu"></header>
+
+        <!-- Main Container -->
+        <main id="main-container"  window-height data-autoscroll="true" data-ui-view></main>
+
+        <!-- Footer -->
+        <footer data-ng-include="'app/modules/footer/base_footer.html'" id="footer" class="footer"></footer>
+    </div>
+    <!-- END Page Container -->
+
+   <!-- JS Code -->
+    
+    <!-- Core JS: jQuery & Bootstrap Related -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core JS: AngularJS Related -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+
+    <!-- Flatpickr JS -->
+    <script src="bower_components/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="bower_components/angular-flatpickr/dist/ng-flatpickr.js"></script>
+
+    <!-- Angular UI Selectbox -->
+    <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
+
+    <!--Angular validation plugin-->
+    <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+    <script src="bower_components/angular-validation-ghiscoding/dist/angular-validation.min.js"></script>
+
+    
+     <!-- Angular Full Calendar -->
+    <script src="bower_components/moment/min/moment.min.js"></script> 
+    <script src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script> 
+    <script src="bower_components/angular-fullcalendar/dist/angular-fullcalendar.min.js"></script> 
+    
+     <!-- Angular ZingChart -->
+     <script type="text/javascript" src="bower_components/zingchart/client/zingchart.min.js"></script>
+	 <script type="text/javascript" src="bower_components/ZingChart-AngularJS/src/zingchart-angularjs.js"></script>
+     
+     <!-- TinyMCE Rich Text Editor -->
+    <script type="text/javascript" src="bower_components/tinymce/tinymce.js"></script>
+  	<script type="text/javascript" src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+    <!--data table-->
+    <script type="text/javascript" src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <!-- Angular Progress Arc -->
+    <script type="text/javascript" src="bower_components/angular-progress-arc/angular-progress-arc.min.js"></script>
+
+    <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    
+
+    
+    <script type="text/javascript" src="auth/config"></script>
+    <script type="text/javascript" src="app/scripts/login.js"></script>
+
+    <!--map -->
+    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.1/lodash.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script> -->
+
+    <!-- Core JS: App Related -->
+    <script src="app/scripts/app.js"></script>
+    <script src="app/scripts/directives.js"></script>
+    <script src="app/scripts/controllers.js"></script>
+    <script src="app/scripts/alumni_services.js"></script>
+
+
+    <script src="app/scripts/dashboard/dashboard.js"></script>
+    <script src="app/scripts/dashboard/editAlumni.js"></script>
+    <script src="app/scripts/myprofile/myprofile.js"></script>
+    <script src="app/scripts/jobs/jobs.js"></script>
+    <script src="app/scripts/jobs/viewJob.js"></script>
+     <script src="app/scripts/news/news.js"></script> 
+     <script src="app/scripts/news/viewNews.js"></script>
+    <!-- <script src="app/scripts/events/events.js"></script> -->
+    <script src="app/scripts/event/event.js"></script>
+    <script src="app/scripts/event/viewEvent.js"></script>
+    <script src="app/scripts/bymap/bymap.js"></script>    
+    <!-- <script src="app/scripts/bySearch/bySearch.js"></script> -->
+    <script src="app/scripts/alumniDetails/alumniDet.js"></script>
+    <script src="app/scripts/donation/donation.js"></script>
+    <script src="app/scripts/donation/viewDonation.js"></script>
+    <script src="app/scripts/grouplist/grouplist.js"></script>
+    <script src="app/scripts/grouplist/groupMemberList.js"></script>
+    <script src="app/scripts/grouplist/addMember.js"></script>
+    <script src="app/scripts/grouplist/addMembersExcelSheet.js"></script>
+    <script src="app/scripts/email/email.js"></script>
+    <!-- <script src="app/scripts/controllers.js"></script> -->
+
+
+
+    <!-- End JS Code -->
+</body>
+</html>

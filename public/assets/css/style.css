@@ -1,0 +1,40 @@
+.btn.btn-primary-2.rounded-0.py-0:hover
+{
+    color: blue;
+}
+
+
+.titles
+{
+    text-decoration: underline;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #map {
+    height: 100%;
+  }
+
+.text-g
+ {
+  color: #827f7f;
+ }
+
+
+
+ .box:hover {
+  box-shadow:         1px 1px 10px 0px rgba(145, 145, 145, 0.75);
+}
+.box{
+  transition: box-shadow .3s;
+}
+
+
+ .text-g h5 , .text-g h6
+ {
+  
+text-align: center;
+}

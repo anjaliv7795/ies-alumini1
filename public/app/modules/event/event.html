@@ -1,0 +1,51 @@
+<ol class="breadcrumb border-bottom">
+    <li class="module_name flex-grow-1">LAUDEA: Alumni Management Portal</li>
+    <li class="breadcrumb-item"><a data-ui-sref="home">Home</a></li>
+    <li class="breadcrumb-item active" data-ui-sref="Event">Event</li>
+</ol>
+<section class="content">
+    <div class="element-wrapper">
+        <h1 class="element-title">Event</h1>
+    </div>
+</section>
+<div class="row">
+        <div class="col-md-12">
+            <div class="card-deck">
+                <div class="card" ng-repeat="event in eventarr" >
+                    <!-- <div class="card card-list"> -->
+                <div>
+                        <a><img class="card-img" style="height: 200px;" ng-src='https://laudea.psgcas.ac.in/events/events/loadimg/{{event.displayPicture.id}}/{{event.displayPicture.originalname}}/{{event.displayPicture.contentType}}'/></a>
+                    <!-- <a><img class="card-img" style="height: 200px;" src="{{event.imageGallery}}"/></a> -->
+                       </div>
+                <div class="card-body" ><a data-ui-sref="viewEvent({eventId:event._id})" data-ui-sref-active="active"
+                    data-toggle="modal"> 
+                    <h6 class="card-title" style="font-weight: bold;">{{event.title| uppercase}}</h6>
+                    <p class="card-text d-block"><i class="la la-calendar mr-1"></i>
+                         {{event.startdate}}
+                    </p>
+              </a>
+             </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="card p-3" ng-repeat="event in eventarr">
+    <div class="row">
+        <div class="card-body">
+            <h5 class="card-title">{{event.title}}</h5>
+            <p class="card-text">venue:<span ng-repeat="ven in event.venue">{{ven.name}}</span></p>
+            <p class="card-text">Description: {{event.fdesc}}</p>
+            <p class="card-text">Start date: {{event.startdate}}</p>
+            <p class="card-text">Last date: {{event.lastdate}}</p>
+            <p class="card-text">start time: {{event.starttime}}</p>
+            <p class="card-text">last time: {{event.lasttime}}</p>
+            <p class="card-text">{{event.postTime}}</p>
+            <p class="card-img">G:{{event.imageGallery}}</p> 
+
+            <p class="card-text">Event starts from {{event.startdate}} to {{event.enddate}}</p>
+            <p class="card-text">Description: {{event.description}}</p> 
+        </div>
+    </div>
+</div> -->

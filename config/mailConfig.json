@@ -1,0 +1,15 @@
+{
+    "emailVerification": {
+        "subject": "PSG-TECH Portal: Please verify your Email",
+        "templateFile": "emailVerification.html"
+        
+    },
+    "aluminiInvitation": {
+        "subject": " ",
+        "templateFile": "aluminiInvite.html"
+    },
+    "aluminiInviteFooter": {
+        "subject": " ",
+        "templateFile": "aluminiInvite-footer.html"
+    }
+}

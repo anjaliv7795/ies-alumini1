@@ -1,0 +1,163 @@
+<div>
+  <ol class="breadcrumb border-bottom">
+    <li class="module_name flex-grow-1">LAUDEA: Alumni Management Portal</li>
+    <li class="breadcrumb-item"><a data-ui-sref="home">Home</a></li>
+    <li class="breadcrumb-item active" data-ui-sref="alumniDetails">Alumni Profile</li>
+  </ol>
+  <div>
+    <section class="content">
+      <div class="element-wrapper">
+        <h1 class="element-title">Alumni</h1>
+        <div class="element-actions">
+          <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#addRow"><i
+              class="la la-plus-circle"></i>Add Student</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="table-container">
+          <div class="table-header" id="accordion2">
+            <div class="standard-table-collapsible-header px-0">
+              <div class="row mx-0">
+                <div class="col-md-2 border-right" data-toggle="collapse" data-target="#getData2" aria-expanded="true">
+                  <a ng-click="dataCollapse($event);" class="top-level get-collapse"><i
+                      class="la la-filter text-primary"></i> Apply Filters </a> </div>
+              </div>
+            </div>
+            <div class="standard-collapsible-body py-2 px-2 border-top collapse show" id="getData2"
+              data-parent="#accordion2">
+              <div class="row form-group mb-0">
+                <div class="col-md-12">
+                  <div class="input-group input-group-sm">
+                    <div class="mr-1">
+                      <label class="my-0">Department</label>
+                      <select class="custom-select form-control form-control-sm" id="degreeName" meterial-select
+                        ng-model="item.degreeName" ng-options="asset as asset.degreeName for asset in studentarr ">
+                        <option value="">chooose..</option>
+                      </select>
+                    </div>
+                    <div class="mx-1">
+                      <label class="my-0">Name</label>
+                      <select class="custom-select form-control form-control-sm" id="studentName" meterial-select
+                        ng-model="item.studentName" ng-options="asset as asset.studentName for asset in studentarr">
+                        <option value="">chooose..</option>
+                      </select>
+                    </div>
+                    <div class="mx-1">
+                      <label class="my-0">Roll Number</label>
+                      <select class="custom-select form-control form-control-sm" id="rollNumber" meterial-select
+                        ng-model="item.rollNumber" ng-options="asset as asset.rollNumber for asset in studentarr">
+                        <option value="">chooose..</option>
+                      </select>
+                    </div>
+                    <div class="mx-1">
+                      <label class="my-0">Branch</label>
+                      <select class="custom-select form-control form-control-sm" id="branchName" meterial-select
+                        ng-model="item.branchName" ng-options="asset as asset.branchName for asset in studentarr">
+                        <option value="">chooose..</option>
+                      </select>
+                    </div>
+                    <div class="mx-1">
+                      <label class="my-0">Semester</label>
+                      <select class="custom-select form-control form-control-sm" id="currentSem" meterial-select
+                        ng-model="item.currentSem" ng-options="asset as asset.currentSem for asset in studentarr">
+                        <option value="">chooose..</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="my-0 col-12"> &nbsp; </label>
+                      <button class="btn btn-sm btn-table mx-1" ng-click="alumniFilter()">Go</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="standard-collapsible-body py-2 px-2 border-top collapse show" data-parent="#accordion2"
+                    id="getData2">
+                    <div class="row form-group mb-0">
+                        <div class="col-md-12">
+                            <div class="input-group input-group-sm">
+                                <div class="mr-1">
+                                    <label class="my-0">Institution</label>
+                                    <select class="custom-select form-control form-control-sm" id="institutionName"
+                                        meterial-select ng-model="item.institutionName"
+                                        ng-options="asset as asset.institutionName for asset in newArr">
+                                        <option value="">chooose..</option>
+                                    </select>
+                                </div>
+
+                                <div class="mx-1">
+                                    <label class="my-0">Department</label>
+                                    <select class="custom-select form-control form-control-sm" id="assetDepartment"
+                                        meterial-select ng-model="item.assetDepartment"
+                                        ng-options="asset as asset.assetDepartment for asset in newArr1">
+                                        <option value="">chooose..</option>
+                                    </select>
+                                </div>
+                                <div class="mx-1">
+                                    <label class="my-0">From Date</label>
+                                    <input class="form-control" placeholder="mm/dd/yyyy" ng-flatpickr
+                                        fp-opts="dateOpts1" ng-model="item.fromDate">
+                                    <ng-model="date1"></span>
+                                </div>
+                                <div class="mx-1">
+                                    <label class="my-0">End Date</label>
+                                    <input class="form-control" placeholder="mm/dd/yyyy" ng-flatpickr
+                                        fp-opts="dateOpts1" ng-model="item.endDate">
+                                    <ng-model="date2"></span>
+                                </div>
+                                <div>
+                                    <label class="my-0 col-12"> &nbsp; </label>
+                                    <button class="btn btn-sm btn-table mx-1" ng-click="assetFilter()">Go</button>
+                                </div>
+                                <div>
+                                    <label class="">Basic View</label> <input type="checkbox">
+                                </div>
+                                <div>
+                                    <label class="">Full View</label> <input type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+
+
+          </div>
+          <div class="table-body">
+            <table id="dropouts-table" class="datatable table table-striped table-bordered" style="width:100%">
+              <thead>
+                <tr>
+                  <!-- <th class="select-checkbox"></th> -->
+                  <th>Name</th>
+                  <th>Roll Number</th>
+                  <th>Semester</th>
+                  <th>Branch</th>
+                  <th>Department</th>
+                  <th class="action1 text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="student in studentarr">
+                  <!-- <td></td> -->
+                  <td>{{student.studentName}}</td>
+                  <td>{{student.rollNumber}}</td>
+                  <td>{{student.currentSem}}</td>
+                  <td>{{student.branchName}}</td>
+                  <td>{{student.degreeName}}</td>
+                  <td data-title="Action" class="action">
+                    <div class="input-group">
+                      <div class="input-group-append"><a class="btn btn-table btn-sm rounded-0 py-0"> <i
+                            class="la la-edit"></i> Edit </a> </div>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

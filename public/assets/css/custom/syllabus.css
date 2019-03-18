@@ -1,0 +1,87 @@
+/* --- Tree --- */
+.tree-node{
+    background: #E1E2EB;
+    border:1px solid rgba(0, 0, 0, .065);
+    border-bottom:0; 
+    padding: 10px 20px 10px 10px;
+}
+.tree-body-show{
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    background-color: #F4F5F9;
+}
+.tree-body-show ol{
+    background-color: #fff !important;
+}
+.nodrop {
+    background-color: #f2dede;
+}
+.angular-ui-tree li[collapsed='false'] .tree-node{
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    background-color: #F4F5F9;
+}
+.angular-ui-tree li[collapsed='false'] {
+    background-color: #f7f7f7 !important;
+}
+.angular-ui-tree li[collapsed='false']  li .tree-node{
+    background-color: #f7f7f7 !important;
+    border-right: 0 !important; 
+    border-top:0 !important; 
+    border-color: rgba(0, 0, 0, .045);
+    padding: 5px 20px 5px 5px;
+}
+.angular-ui-tree li[collapsed='false']  li:last-child .tree-node{
+    border-bottom:0 !important; 
+}
+.angular-ui-tree li[collapsed='false']  ol{
+    border: 1px solid rgba(0, 0, 0, .065);
+    border-top: 0;
+    border-bottom: 0;
+}
+.angular-ui-tree>ol>li:last-child{
+    border-bottom: 1px solid rgba(0, 0, 0, .065); 
+} 
+.tree-node a{
+    color: #666 !important;
+    transition: transform 0.3s;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.tree-node a i{
+    font-size: 1.33rem !important;
+}
+a.tree-btn-add{
+    color: #007bff !important;
+    font-weight: 400 !important;
+}
+.angular-ui-tree-placeholder {
+    background: #E1E2EB ;
+    border: 2px dashed #3c4c7e;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.tree-handle{
+    cursor: move !important;
+}
+.angular-ui-tree-nodes.hidden{
+    display: none;
+}
+a.tree-btn-remove{
+    color: #dc3545 !important;
+}
+ol.angular-ui-tree-nodes li ol .ui-tree-handle, ol.angular-ui-tree-nodes li ol .tree-btn-add,
+ol.angular-ui-tree-nodes li ol .tree-btn-toggle, .tree-handle, .angular-ui-tree-drag .tree-btn-add, .angular-ui-tree-drag .tree-btn-toggle{
+    display: none !important;
+}
+ol.angular-ui-tree-nodes li ol .tree-handle{
+    display: inline-block !important;
+}
+.angular-ui-tree-nodes .angular-ui-tree-nodes {
+    padding-left: 30px !important;
+}
+.w-40{
+    width: 40%;
+}
+
+
+
