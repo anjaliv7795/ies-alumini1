@@ -47,28 +47,65 @@ function getAllDistinct(query, callback) {
         }
     });
 }
+function getCountryCount(callback) {
+    var db = mongodb.getDb();
+    var coll = db.collection(this.getCollectionName());
+    coll.aggregate([{ $group: { _id: "$COUNTRY_NAME", count: { $sum: 1 }}}], function (err, res) {
+        if (!err) {
+            callback(null, res);
+        }
+        else {
+            callback(err, null);
+        }
+    })
+}
 
-function getQuerySingleField(query,callback) {
+function getStateCount(callback) {
+    var db = mongodb.getDb();
+    var coll = db.collection(this.getCollectionName());
+    coll.aggregate([{ $group: { _id: "$STATE_NAME", count: { $sum: 1 }}}], function (err, res) {
+        if (!err) {
+            callback(null, res);
+        }
+        else {
+            callback(err, null);
+        }
+    })
+}
+
+function getCityCount(callback) {
+    var db = mongodb.getDb();
+    var coll = db.collection(this.getCollectionName());
+    coll.aggregate([{ $group: { _id: "$CITY", count: { $sum: 1 }}}], function (err, res) {
+        if (!err) {
+            callback(null, res);
+        }
+        else {
+            callback(err, null);
+        }
+    })
+}
+function getQuerySingleField(query, callback) {
     var db = mongodb.getDb();
     var coll = db.collection(this.getCollectionName());
     // var query1 = {"Email" : { $in: query }};
-    
-    cursor = coll.find({query},function(err,result){
-    // cursor = coll.find(query, query1);
+
+    cursor = coll.find({ query }, function (err, result) {
+        // cursor = coll.find(query, query1);
         //  cursor.toArray(function (err, result) {
-            if (!err) {
-                callback(null, result);
-            } else {
-                callback(err, null);
-            }
-        });
-  
+        if (!err) {
+            callback(null, result);
+        } else {
+            callback(err, null);
+        }
+    });
+
 }
 // function getQuerySingleField(query, skipVal, callback) {
 //     var db = mongodb.getDb();
 //     var coll = db.collection(this.getCollectionName());
 //     var query1 = {"Email" : ''};
-    
+
 //     cursor = coll.find(query, query1).sort({'Email' : 1}).skip(skipVal).limit(200);
 //     // cursor = coll.find(query, query1);
 //          cursor.toArray(function (err, result) {
@@ -78,7 +115,7 @@ function getQuerySingleField(query,callback) {
 //                 callback(err, null);
 //             }
 //         });
-  
+
 // }
 
 function getByName(query, callback) {
@@ -129,15 +166,15 @@ function getByQuery(query, projection, callback) {
     var cursor;
     if (projection) {
         var projectionObj = {};
-        projection.forEach(function(p) {
+        projection.forEach(function (p) {
             projectionObj[p] = 1;
         });
         cursor = coll.find(query, projectionObj);
     } else {
         cursor = coll.find(query);
-        
+
     }
-    
+
     cursor.toArray(function (err, result) {
         if (!err) {
             callback(null, result);
@@ -151,7 +188,7 @@ function getByQuery(query, projection, callback) {
 function update(query, detailsToUpdate, callback) {
     var db = mongodb.getDb();
     var coll = db.collection(this.getCollectionName());
-    coll.update(query, { $set: detailsToUpdate }, {multi:false}, function (err, result) {
+    coll.update(query, { $set: detailsToUpdate }, { multi: false }, function (err, result) {
         if (!err) {
             callback(null, result);
         } else {
@@ -164,7 +201,7 @@ function update(query, detailsToUpdate, callback) {
 function updateMultiple(query, detailsToUpdate, callback) {
     var db = mongodb.getDb();
     var coll = db.collection(this.getCollectionName());
-    coll.update(query, { $set: detailsToUpdate }, {multi:true}, function (err, result) {
+    coll.update(query, { $set: detailsToUpdate }, { multi: true }, function (err, result) {
         if (!err) {
             callback(null, result);
         } else {
@@ -177,7 +214,7 @@ function updateMultiple(query, detailsToUpdate, callback) {
 function updateUnset(query, detailsToUpdate, callback) {
     var db = mongodb.getDb();
     var coll = db.collection(this.getCollectionName());
-    coll.update(query, { $unset: detailsToUpdate }, {multi:false}, function (err, result) {
+    coll.update(query, { $unset: detailsToUpdate }, { multi: false }, function (err, result) {
         if (!err) {
             callback(null, result);
         } else {
@@ -190,7 +227,7 @@ function updateUnset(query, detailsToUpdate, callback) {
 function updateSetUnset(query, detailsToUpdate, detailsToUnset, callback) {
     var db = mongodb.getDb();
     var coll = db.collection(this.getCollectionName());
-    coll.update(query, { $set: detailsToUpdate, $unset: detailsToUnset }, {multi:false}, function (err, result) {
+    coll.update(query, { $set: detailsToUpdate, $unset: detailsToUnset }, { multi: false }, function (err, result) {
         if (!err) {
             callback(null, result);
         } else {
@@ -204,7 +241,7 @@ function updateArrayById(id, elementsToPush, callback) {
     var db = mongodb.getDb();
     var coll = db.collection(this.getCollectionName());
 
-    coll.update({_id: mongodb.ObjectID(id)}, { $push: elementsToPush }, { multi: false }, function (err, result) {
+    coll.update({ _id: mongodb.ObjectID(id) }, { $push: elementsToPush }, { multi: false }, function (err, result) {
         if (!err) {
             callback(null, result);
         } else {
@@ -250,11 +287,11 @@ function updateById(id, detailsToUpdate, callback) {
         delete detailsToUpdate._id;
     }
 
-    coll.update({_id: mongodb.ObjectID(id)}, { $set: detailsToUpdate }, {multi:false}, function (err, result) {
+    coll.update({ _id: mongodb.ObjectID(id) }, { $set: detailsToUpdate }, { multi: false }, function (err, result) {
         if (deletedId) {
             detailsToUpdate._id = deletedId;
         }
-        
+
         if (!err) {
             callback(null, result);
         } else {
@@ -280,7 +317,7 @@ function updateMany(query, detailsToUpdate, callback) {
 function remove(id, callback) {
     var db = mongodb.getDb();
     var coll = db.collection(this.getCollectionName());
-    coll.remove({_id: mongodb.ObjectID(id)} , function (err, result) {
+    coll.remove({ _id: mongodb.ObjectID(id) }, function (err, result) {
         if (!err) {
             callback(null, result);
         } else {
@@ -316,26 +353,30 @@ function bulkWrite(bulk, callback) {
         } else {
             callback(err, null);
         }
-    });    
+    });
 };
 
 function getDb() {
     return monogdb.getDb();
 }
 
+
 module.exports = function BaseDao(collectionName) {
     return {
         create: create,
         createMany: createMany,
         getAll: getAll,
-        getById: getById, 
-        getQuerySingleField: getQuerySingleField, 
+        getById: getById,
+        getQuerySingleField: getQuerySingleField,
         getAllDistinct: getAllDistinct,
+        getCountryCount : getCountryCount,
+        getStateCount: getStateCount,
+        getCityCount:getCityCount,
         getByName: getByName,
         getData: getData,
         getByQuery: getByQuery,
         update: update,
-        updateMultiple : updateMultiple,
+        updateMultiple: updateMultiple,
         updateById: updateById,
         updateMany: updateMany,
         updateUnset: updateUnset,
@@ -346,10 +387,9 @@ module.exports = function BaseDao(collectionName) {
         remove: remove,
         removeByQuery: removeByQuery,
         bulkWrite: bulkWrite,
-        getDb : getDb,
+        getDb: getDb,
         getCollectionName: function () {
             return collectionName;
         },
     };
 };
-  
