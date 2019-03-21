@@ -25,17 +25,20 @@
             </ul>
           </div>
         </li>
-        <li class="breadcrumb-item"> <a href="#">BREADCRUMB HOME</a> </li>
-        <li class="breadcrumb-item"> <a href="#">BREADCRUMB PARENT</a> </li>
-        <li class="breadcrumb-item active">BREADCRUMB CHILD</li>
+        <li class="breadcrumb-item"> <a href="#">HOME</a> </li>
+        <li class="breadcrumb-item"> <a href="#">Alumni Directory</a> </li>
+        <li class="breadcrumb-item active">Maps</li>
       </ol>
       <section class="content">
         <div class="element-wrapper">
           <h1 class="element-title">Maps</h1>
         </div>
-        
+        {{cityCount}}
         <div class="row mb-5">
           <div class="col-12">
+              <div id="class" ng-repeat="marker in markers">
+                  {{marker.countryCount}}
+                </div>
       
               <div id="map"></div>
       
